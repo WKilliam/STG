@@ -1,5 +1,6 @@
+import 'package:STG/Style/Front/FrontHome/FrontHomePage.dart';
 import 'package:flutter/material.dart';
-import 'package:STG/Body/PrimaryBody.dart';
+import 'package:STG/Body/GeneralTheme.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,7 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   // FR : la variable primaryBody permet d'utilisé les widget sous forme de classe elle sera commune au autre page
   // EN : the primaryBody variable allows to use the widget as a class it will be common to the other page
-  PrimaryBody primeryBody = PrimaryBody();
+  GeneralTheme primeryBody = GeneralTheme();
   @override
   Widget build(BuildContext context) {
     //FR : transfére de primeryBody au autre couche d'affichage, buildMaterialApp permet d'affiché un MaterialApp prédéfini prennent en compte une primaryBody pour les autres couches
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   // FR : la variable primaryBody permet d'utilisé les widget sous forme de classe elle sera commune au autre page
   // EN : the primaryBody variable allows to use the widget as a class it will be common to the other page
-  PrimaryBody primeryBody;
+  GeneralTheme primeryBody;
   MyHomePage(this.primeryBody);
   @override
   //FR : transfére de primeryBody au autre couche d'affichage
@@ -30,15 +31,36 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  FrontHomePage _frontHomePage = FrontHomePage();
+  Text txtName = Text("Nom");
+  Text txtFirstName = Text("Prenom");
+  Text txtEmail = Text("Email");
+  Text password = Text("Mot de Passe");
+  Text conf_Password = Text("Confirmation du Mot de Passe");
+  Text adress = Text("Adresse");
   // FR : la variable primaryBody permet d'utilisé les widget sous forme de classe elle sera commune au autre page
   // EN : the primaryBody variable allows to use the widget as a class it will be common to the other page
-  PrimaryBody primeryBody;
+  GeneralTheme primeryBody;
   _MyHomePageState(this.primeryBody);
   @override
   //FR : transfére de primeryBody au autre couche d'affichage , builderCommon affiche la base d'une page
   //EN : transfer from primeryBody to the other display layer, builderCommon display a base of page
   Widget build(BuildContext context) {
-    return primeryBody.builderCommon();
+    return primeryBody.builderCommon(
+        _frontHomePage.frHomePage(
+            context,
+            txtName,
+            txtFirstName,
+            txtEmail,
+            password,
+            conf_Password,
+            adress),
+        _frontHomePage.frHomePagedrawer(),
+        false,
+        Alignment.bottomRight,
+        Alignment.topLeft,
+        Colors.black,
+        Colors.black87);
   }
 
 }
