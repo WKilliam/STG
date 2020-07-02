@@ -6,10 +6,11 @@ import 'package:neon/neon.dart';
 
 class FrontHomePage {
 
+
   Widget frHomePage(BuildContext context,bool debugShow,Text txtName,Text txtFirstName,Text txtEmail,Text password,Text confPassword,Text adress) {
+    
     StyleText styleText = StyleText();
     StyleIcons styleIcons = StyleIcons();
-
     return SingleChildScrollView(
         child: Center(
             child: Container(
@@ -55,7 +56,7 @@ class FrontHomePage {
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text('Connectez-vous',style: styleText.style1(context),),)
+                                      child: Center(child:Text('Connectez-vous',style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -71,7 +72,7 @@ class FrontHomePage {
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text('Mail',style: styleText.style1(context),),)
+                                      child: Center(child:Text('Mail',style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -88,7 +89,7 @@ class FrontHomePage {
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.indigo:null,
                                       child: Center(child:TextField(
-                                        style: styleText.style1(context),
+                                        style: styleText.style(context),
                                         textAlign: TextAlign.center,
                                       )
                                       )
@@ -107,7 +108,7 @@ class FrontHomePage {
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text('Mot de passe',style: styleText.style1(context),),)
+                                      child: Center(child:Text('Mot de passe',style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -124,7 +125,7 @@ class FrontHomePage {
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.indigo:null,
                                       child: Center(child:TextField(
-                                        style: styleText.style1(context),
+                                        style: styleText.style(context),
                                         textAlign: TextAlign.center,
                                       )
                                       )
@@ -136,26 +137,21 @@ class FrontHomePage {
                                   opacity: 1,
                                   child: Container(
                                       margin: EdgeInsets.only(
-                                          top:MediaQuery.of(context).size.height/15,
+                                          top:MediaQuery.of(context).size.height/20,
                                           left: MediaQuery.of(context).size.width/4,
                                           right: MediaQuery.of(context).size.width/4,
                                           bottom: MediaQuery.of(context).size.height/100),
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/15,
-                                      color: debugShow==true ? Colors.orange:null,
-                                      child: InkWell(
-                                        onTap: (){
-                                          print('test');
-                                        },
-                                        child: Card(
-                                            elevation: 10,
+                                      color: debugShow==true ? Colors.red:null,
+                                      child: RaisedButton(
                                             color: Colors.white24,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(20.0),
-                                            ),
-                                            child: Center(child:Text('Connection',style: styleText.style1(context),),)
-                                        ),
-                                      )
+                                            shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                                            child: Center(child:Text('Connection',style: styleText.style(context),),),
+                                            onPressed: (){
+                                              print('test press');
+                                            },
+                                          )
                                   ),
                                 )
                             ),
@@ -171,18 +167,13 @@ class FrontHomePage {
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/15,
                                       color: debugShow==true ? Colors.red:null,
-                                      child: InkWell(
-                                        onTap: (){
-                                          print('test');
+                                      child: RaisedButton(
+                                        color: Colors.white24,
+                                        shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                                        child: Center(child:Text('Inscription',style: styleText.style(context),),),
+                                        onPressed: (){
+                                          print('test press');
                                         },
-                                        child: Card(
-                                            elevation: 10,
-                                            color: Colors.white24,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(20.0),
-                                            ),
-                                            child: Center(child:Text('Inscription',style: styleText.style1(context),),)
-                                        ),
                                       )
                                   ),
                                 )
@@ -196,6 +187,8 @@ class FrontHomePage {
         )
     );
   }
+
+
 
 
   Widget frHomePagedrawer(){

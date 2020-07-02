@@ -10,6 +10,13 @@ class StyleText extends TextStyle{
         fontFamily: 'Raleway',
     );
   }
+  TextStyle style(BuildContext context){
+    return TextStyle(
+      color: Colors.black,
+      fontSize: MediaQuery.of(context).size.height/30,
+      fontFamily: 'Raleway',
+    );
+  }
 
   TextStyle style2(BuildContext context){
     return TextStyle(

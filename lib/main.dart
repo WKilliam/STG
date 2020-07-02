@@ -1,4 +1,7 @@
+import 'package:STG/ConnectorFirebase/ClasseObject/User.dart';
 import 'package:STG/Style/Front/FrontHome/FrontHomePage.dart';
+import 'package:STG/TestRoot.dart';
+import 'package:STG/ConnectorFirebase/ObjectService/UserService.dart';
 import 'package:flutter/material.dart';
 import 'package:STG/Body/GeneralTheme.dart';
 
@@ -33,6 +36,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  UserService _service = UserService();
+  User _user = User();
   FrontHomePage _frontHomePage = FrontHomePage();
   Text txtName = Text("Nom");
   Text txtFirstName = Text("Prenom");
@@ -49,7 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
   //FR : transfére de primeryBody au autre couche d'affichage , builderCommon affiche la base d'une page
   //EN : transfer from primeryBody to the other display layer, builderCommon display a base of page
   Widget build(BuildContext context) {
-    print(debugShow);
+    _user.id='test';
+    _user.passWord='test2';
+    _service.addUser(_user.toMap());
+    print('debug Show is :  ${debugShow}');
     return primeryBody.builderCommon(
         _frontHomePage.frHomePage(
             context,
@@ -64,8 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
         false,
         Alignment.bottomRight,
         Alignment.topLeft,
-        Colors.black,
-        Colors.black87);
+        Colors.blue,
+        Colors.redAccent);
+        //Colors.black,
+        //Colors.black87);
   }
-
 }
