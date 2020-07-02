@@ -53,7 +53,7 @@ class FrontHomePage {
                                           right: MediaQuery.of(context).size.width/7,
                                           bottom: MediaQuery.of(context).size.height/100),
                                       width: MediaQuery.of(context).size.width,
-                                      height: MediaQuery.of(context).size.height/10,
+                                      height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
                                       child: Center(child:Text('Connectez-vous',style: styleText.style1(context),),)
                                   ),
@@ -64,29 +64,14 @@ class FrontHomePage {
                                   opacity: 1,
                                   child: Container(
                                       margin: EdgeInsets.only(
-                                          top:MediaQuery.of(context).size.height/50,
+                                          top:MediaQuery.of(context).size.height/15,
                                           left: MediaQuery.of(context).size.width/7,
                                           right: MediaQuery.of(context).size.width/7,
                                           bottom: MediaQuery.of(context).size.height/100),
                                       width: MediaQuery.of(context).size.width,
-                                      height: MediaQuery.of(context).size.height/5,
-                                      color: debugShow==true ? Colors.brown:null,
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Center(
-                                                child:Text('Mail kkkkkkk',style: styleText.style1(context),)
-                                            ),
-                                            Center(
-                                                child:TextField(
-                                                  style: styleText.style1(context),
-                                                  textAlign: TextAlign.center,
-                                                )
-                                            ),
-                                          ],
-                                        ),
-                                      )
+                                      height: MediaQuery.of(context).size.height/20,
+                                      color: debugShow==true ? Colors.purple:null,
+                                      child: Center(child:Text('Mail',style: styleText.style1(context),),)
                                   ),
                                 )
                             ),
@@ -95,28 +80,17 @@ class FrontHomePage {
                                   opacity: 1,
                                   child: Container(
                                       margin: EdgeInsets.only(
-                                          top:MediaQuery.of(context).size.height/50,
-                                          left: MediaQuery.of(context).size.width/7,
-                                          right: MediaQuery.of(context).size.width/7,
+                                          top:MediaQuery.of(context).size.height/20,
+                                          left: MediaQuery.of(context).size.width/5,
+                                          right: MediaQuery.of(context).size.width/5,
                                           bottom: MediaQuery.of(context).size.height/100),
                                       width: MediaQuery.of(context).size.width,
-                                      height: MediaQuery.of(context).size.height/5,
+                                      height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.indigo:null,
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Center(
-                                                child:Text('Mail kkkkkkk',style: styleText.style1(context),)
-                                            ),
-                                            Center(
-                                                child:TextField(
-                                                  style: styleText.style1(context),
-                                                  textAlign: TextAlign.center,
-                                                )
-                                            ),
-                                          ],
-                                        ),
+                                      child: Center(child:TextField(
+                                        style: styleText.style1(context),
+                                        textAlign: TextAlign.center,
+                                      )
                                       )
                                   ),
                                 )
@@ -126,7 +100,43 @@ class FrontHomePage {
                                   opacity: 1,
                                   child: Container(
                                       margin: EdgeInsets.only(
-                                          top:MediaQuery.of(context).size.height/50,
+                                          top:MediaQuery.of(context).size.height/15,
+                                          left: MediaQuery.of(context).size.width/7,
+                                          right: MediaQuery.of(context).size.width/7,
+                                          bottom: MediaQuery.of(context).size.height/100),
+                                      width: MediaQuery.of(context).size.width,
+                                      height: MediaQuery.of(context).size.height/20,
+                                      color: debugShow==true ? Colors.purple:null,
+                                      child: Center(child:Text('Mot de passe',style: styleText.style1(context),),)
+                                  ),
+                                )
+                            ),
+                            Center(
+                                child: Opacity(
+                                  opacity: 1,
+                                  child: Container(
+                                      margin: EdgeInsets.only(
+                                          top:MediaQuery.of(context).size.height/20,
+                                          left: MediaQuery.of(context).size.width/5,
+                                          right: MediaQuery.of(context).size.width/5,
+                                          bottom: MediaQuery.of(context).size.height/100),
+                                      width: MediaQuery.of(context).size.width,
+                                      height: MediaQuery.of(context).size.height/20,
+                                      color: debugShow==true ? Colors.indigo:null,
+                                      child: Center(child:TextField(
+                                        style: styleText.style1(context),
+                                        textAlign: TextAlign.center,
+                                      )
+                                      )
+                                  ),
+                                )
+                            ),
+                            Center(
+                                child: Opacity(
+                                  opacity: 1,
+                                  child: Container(
+                                      margin: EdgeInsets.only(
+                                          top:MediaQuery.of(context).size.height/15,
                                           left: MediaQuery.of(context).size.width/4,
                                           right: MediaQuery.of(context).size.width/4,
                                           bottom: MediaQuery.of(context).size.height/100),
@@ -143,7 +153,7 @@ class FrontHomePage {
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(20.0),
                                             ),
-                                            child: Center(child:Text('Mail kkkkkkk',style: styleText.style1(context),),)
+                                            child: Center(child:Text('Connection',style: styleText.style1(context),),)
                                         ),
                                       )
                                   ),
@@ -171,7 +181,7 @@ class FrontHomePage {
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(20.0),
                                             ),
-                                            child: Center(child:Text('Mail kkkkkkk',style: styleText.style1(context),),)
+                                            child: Center(child:Text('Inscription',style: styleText.style1(context),),)
                                         ),
                                       )
                                   ),

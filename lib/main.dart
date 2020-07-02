@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   // FR : la variable primaryBody permet d'utilisé les widget sous forme de classe elle sera commune au autre page
   // EN : the primaryBody variable allows to use the widget as a class it will be common to the other page
   GeneralTheme primeryBody = GeneralTheme();
-  bool debugShow = true;
+  bool debugShow = false;
   @override
   Widget build(BuildContext context) {
     //FR : transfére de primeryBody au autre couche d'affichage, buildMaterialApp permet d'affiché un MaterialApp prédéfini prennent en compte une primaryBody pour les autres couches
