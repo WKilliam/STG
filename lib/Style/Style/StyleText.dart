@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class StyleText extends TextStyle{
@@ -11,6 +10,12 @@ class StyleText extends TextStyle{
     );
   }
 
-
+  TextStyle style2(BuildContext context){
+    return TextStyle(
+      color: Colors.black,
+      fontSize: MediaQuery.of(context).size.width/40,
+      fontStyle: FontStyle.italic,
+    );
+  }
 
 }

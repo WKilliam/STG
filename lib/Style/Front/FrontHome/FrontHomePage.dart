@@ -1,140 +1,102 @@
-
-
 import 'package:STG/Style/Style/StyleIcons.dart';
 import 'package:STG/Style/Style/StyleText.dart';
-
 import 'package:flutter/material.dart';
+import 'package:neon/neon.dart';
+
 
 class FrontHomePage {
 
-  Widget frHomePage(BuildContext context,Text txtName,Text txtFirstName,Text txtEmail,Text password,Text confPassword,Text adress){
+  Widget frHomePage(BuildContext context,Text txtName,Text txtFirstName,Text txtEmail,Text password,Text confPassword,Text adress) {
     StyleText styleText = StyleText();
     StyleIcons styleIcons = StyleIcons();
 
     return SingleChildScrollView(
-      child: Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+        child: Center(
+            child: Container(
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height,
+                child: Stack(
+                    children: [
+                      Center(
+                          child: Opacity(
+                            opacity: 0.5,
+                            child: Container(
+                                margin: EdgeInsets.only(
+                                    top:MediaQuery.of(context).size.height/15,
+                                    left: MediaQuery.of(context).size.width/8,
+                                    right: MediaQuery.of(context).size.width/8,
+                                    bottom: MediaQuery.of(context).size.height/15),
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                              //color: Colors.white54,
+                              child: Card(
+                                elevation: 10,
+                                color: Colors.white24,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                )
+                              )
+                            ),
+                          )
+                      ),
+                      Center(
+                          child: Opacity(
+                            opacity: 1,
+                            child: Container(
+                                width: MediaQuery.of(context).size.width/2.1,
+                                height: MediaQuery.of(context).size.height/9,
+                                //color: Colors.white54,
+                                child: Card(
+                                    elevation: 10,
+                                    color: Colors.red,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                    )
+                                )
+                            ),
+                          )
+                      )
 
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                    margin: EdgeInsets.only(top: 15.0,left: 15.0,right: 15.0,bottom: 15.0),
-                    //width: MediaQuery.of(context).size.width,
-                    //height: MediaQuery.of(context).size.height,
-                    //color: Colors.redAccent,
-                    child: TextField(
-                      style: styleText.style1(context),
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                          hintText: txtName.data,
-                          hintStyle: styleText.style1(context),
-                          icon: styleIcons.iconAccount(context)
-                      ),
+                    ]
+                )
+            )
+        )
+    );
+  }
+              /*
+              Center(
+                    Opacity(
+                        opacity: 0.5,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width/2,
+                        height: MediaQuery.of(context).size.height/1.5,
+                        //color: Colors.white54,
+                        child: Card(
+                          elevation: 10,
+                          color: Colors.white24,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                        ),
+                      )
                     )
+                  ],
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                    margin: EdgeInsets.only(top: 15.0,left: 15.0,right: 15.0,bottom: 15.0),
-                    //width: MediaQuery.of(context).size.width,
-                    //height: MediaQuery.of(context).size.height,
-                    //color: Colors.redAccent,
-                    child: TextField(
-                      style: styleText.style1(context),
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                          hintText: txtFirstName.data,
-                          hintStyle: styleText.style1(context),
-                          icon: styleIcons.iconAccount(context)
-                      ),
-                    )
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                    margin: EdgeInsets.only(top: 15.0,left: 15.0,right: 15.0,bottom: 15.0),
-                    //width: MediaQuery.of(context).size.width,
-                    //height: MediaQuery.of(context).size.height,
-                    //color: Colors.redAccent,
-                    child: TextField(
-                      style: styleText.style1(context),
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                          hintText: txtEmail.data,
-                          hintStyle: styleText.style1(context),
-                          icon: styleIcons.iconMail(context)
-                      ),
-                    )
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                    margin: EdgeInsets.only(top: 15.0,left: 15.0,right: 15.0,bottom: 15.0),
-                    //width: MediaQuery.of(context).size.width,
-                    //height: MediaQuery.of(context).size.height,
-                    //color: Colors.redAccent,
-                    child: TextField(
-                      style: styleText.style1(context),
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                          hintText: password.data,
-                          hintStyle: styleText.style1(context),
-                          icon: styleIcons.iconLock(context)
-                      ),
-                    )
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                    margin: EdgeInsets.only(top: 15.0,left: 15.0,right: 15.0,bottom: 15.0),
-                    //width: MediaQuery.of(context).size.width,
-                    //height: MediaQuery.of(context).size.height,
-                    //color: Colors.redAccent,
-                    child: TextField(
-                      style: styleText.style1(context),
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                          hintText: confPassword.data,
-                          hintStyle: styleText.style1(context),
-                          icon: styleIcons.iconLock(context)
-                      ),
-                    )
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                    margin: EdgeInsets.only(top: 15.0,left: 15.0,right: 15.0,bottom: 15.0),
-                    //width: MediaQuery.of(context).size.width,
-                    //height: MediaQuery.of(context).size.height,
-                    //color: Colors.redAccent,
-                    child: TextField(
-                      style: styleText.style1(context),
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                          hintText: adress.data,
-                          hintStyle: styleText.style1(context),
-                          icon: styleIcons.iconLocation(context)
-                      ),
-                    )
-                ),
-              ),
-
+              )
             ],
           ),
         )
       ),
     );
   }
+
+               */
 
   Widget frHomePagedrawer(){
     StyleText styleText = StyleText();
