@@ -10,11 +10,12 @@ class MyApp extends StatelessWidget {
   // FR : la variable primaryBody permet d'utilisé les widget sous forme de classe elle sera commune au autre page
   // EN : the primaryBody variable allows to use the widget as a class it will be common to the other page
   GeneralTheme primeryBody = GeneralTheme();
+  bool debugShow = true;
   @override
   Widget build(BuildContext context) {
     //FR : transfére de primeryBody au autre couche d'affichage, buildMaterialApp permet d'affiché un MaterialApp prédéfini prennent en compte une primaryBody pour les autres couches
     //EN : transfer from primeryBody to the other display layer, buildMaterialApp allows to display a predefined MaterialApp take into account a primaryBody for the other layers
-    return primeryBody.buildMaterialApp(MyHomePage(this.primeryBody));
+    return primeryBody.buildMaterialApp(MyHomePage(this.primeryBody,this.debugShow),this.debugShow);
   }
 }
 
@@ -22,11 +23,12 @@ class MyHomePage extends StatefulWidget {
   // FR : la variable primaryBody permet d'utilisé les widget sous forme de classe elle sera commune au autre page
   // EN : the primaryBody variable allows to use the widget as a class it will be common to the other page
   GeneralTheme primeryBody;
-  MyHomePage(this.primeryBody);
+  bool debugShow;
+  MyHomePage(this.primeryBody,this.debugShow);
   @override
   //FR : transfére de primeryBody au autre couche d'affichage
   //EN : transfer from primeryBody to the other display layer
-  _MyHomePageState createState() => _MyHomePageState(this.primeryBody);
+  _MyHomePageState createState() => _MyHomePageState(this.primeryBody,this.debugShow);
 
 }
 
@@ -41,14 +43,17 @@ class _MyHomePageState extends State<MyHomePage> {
   // FR : la variable primaryBody permet d'utilisé les widget sous forme de classe elle sera commune au autre page
   // EN : the primaryBody variable allows to use the widget as a class it will be common to the other page
   GeneralTheme primeryBody;
-  _MyHomePageState(this.primeryBody);
+  bool debugShow;
+  _MyHomePageState(this.primeryBody,this.debugShow);
   @override
   //FR : transfére de primeryBody au autre couche d'affichage , builderCommon affiche la base d'une page
   //EN : transfer from primeryBody to the other display layer, builderCommon display a base of page
   Widget build(BuildContext context) {
+    print(debugShow);
     return primeryBody.builderCommon(
         _frontHomePage.frHomePage(
             context,
+            debugShow,
             txtName,
             txtFirstName,
             txtEmail,

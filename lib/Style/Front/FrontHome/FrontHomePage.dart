@@ -6,21 +6,16 @@ import 'package:neon/neon.dart';
 
 class FrontHomePage {
 
-  Widget frHomePage(BuildContext context,Text txtName,Text txtFirstName,Text txtEmail,Text password,Text confPassword,Text adress) {
+  Widget frHomePage(BuildContext context,bool debugShow,Text txtName,Text txtFirstName,Text txtEmail,Text password,Text confPassword,Text adress) {
     StyleText styleText = StyleText();
     StyleIcons styleIcons = StyleIcons();
 
     return SingleChildScrollView(
         child: Center(
             child: Container(
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                color: debugShow==true ? Colors.green:null,
                 child: Stack(
                     children: [
                       Center(
@@ -34,69 +29,164 @@ class FrontHomePage {
                                     bottom: MediaQuery.of(context).size.height/15),
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
-                              //color: Colors.white54,
+                                color: debugShow==true ? Colors.red:null,
                               child: Card(
                                 elevation: 10,
                                 color: Colors.white24,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20.0),
-                                )
+                                ),
                               )
                             ),
                           )
                       ),
                       Center(
-                          child: Opacity(
-                            opacity: 1,
-                            child: Container(
-                                width: MediaQuery.of(context).size.width/2.1,
-                                height: MediaQuery.of(context).size.height/9,
-                                //color: Colors.white54,
-                                child: Card(
-                                    elevation: 10,
-                                    color: Colors.red,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20.0),
-                                    )
+                        child: Column(
+                          children: [
+                            Center(
+                                child: Opacity(
+                                  opacity: 1,
+                                  child: Container(
+                                      margin: EdgeInsets.only(
+                                          top:MediaQuery.of(context).size.height/10,
+                                          left: MediaQuery.of(context).size.width/7,
+                                          right: MediaQuery.of(context).size.width/7,
+                                          bottom: MediaQuery.of(context).size.height/100),
+                                      width: MediaQuery.of(context).size.width,
+                                      height: MediaQuery.of(context).size.height/10,
+                                      color: debugShow==true ? Colors.purple:null,
+                                      child: Center(child:Text('Connectez-vous',style: styleText.style1(context),),)
+                                  ),
                                 )
                             ),
-                          )
-                      )
-
+                            Center(
+                                child: Opacity(
+                                  opacity: 1,
+                                  child: Container(
+                                      margin: EdgeInsets.only(
+                                          top:MediaQuery.of(context).size.height/50,
+                                          left: MediaQuery.of(context).size.width/7,
+                                          right: MediaQuery.of(context).size.width/7,
+                                          bottom: MediaQuery.of(context).size.height/100),
+                                      width: MediaQuery.of(context).size.width,
+                                      height: MediaQuery.of(context).size.height/5,
+                                      color: debugShow==true ? Colors.brown:null,
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Center(
+                                                child:Text('Mail kkkkkkk',style: styleText.style1(context),)
+                                            ),
+                                            Center(
+                                                child:TextField(
+                                                  style: styleText.style1(context),
+                                                  textAlign: TextAlign.center,
+                                                )
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                  ),
+                                )
+                            ),
+                            Center(
+                                child: Opacity(
+                                  opacity: 1,
+                                  child: Container(
+                                      margin: EdgeInsets.only(
+                                          top:MediaQuery.of(context).size.height/50,
+                                          left: MediaQuery.of(context).size.width/7,
+                                          right: MediaQuery.of(context).size.width/7,
+                                          bottom: MediaQuery.of(context).size.height/100),
+                                      width: MediaQuery.of(context).size.width,
+                                      height: MediaQuery.of(context).size.height/5,
+                                      color: debugShow==true ? Colors.indigo:null,
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Center(
+                                                child:Text('Mail kkkkkkk',style: styleText.style1(context),)
+                                            ),
+                                            Center(
+                                                child:TextField(
+                                                  style: styleText.style1(context),
+                                                  textAlign: TextAlign.center,
+                                                )
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                  ),
+                                )
+                            ),
+                            Center(
+                                child: Opacity(
+                                  opacity: 1,
+                                  child: Container(
+                                      margin: EdgeInsets.only(
+                                          top:MediaQuery.of(context).size.height/50,
+                                          left: MediaQuery.of(context).size.width/4,
+                                          right: MediaQuery.of(context).size.width/4,
+                                          bottom: MediaQuery.of(context).size.height/100),
+                                      width: MediaQuery.of(context).size.width,
+                                      height: MediaQuery.of(context).size.height/15,
+                                      color: debugShow==true ? Colors.orange:null,
+                                      child: InkWell(
+                                        onTap: (){
+                                          print('test');
+                                        },
+                                        child: Card(
+                                            elevation: 10,
+                                            color: Colors.white24,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(20.0),
+                                            ),
+                                            child: Center(child:Text('Mail kkkkkkk',style: styleText.style1(context),),)
+                                        ),
+                                      )
+                                  ),
+                                )
+                            ),
+                            Center(
+                                child: Opacity(
+                                  opacity: 1,
+                                  child: Container(
+                                      margin: EdgeInsets.only(
+                                          top:MediaQuery.of(context).size.height/50,
+                                          left: MediaQuery.of(context).size.width/4,
+                                          right: MediaQuery.of(context).size.width/4,
+                                          bottom: MediaQuery.of(context).size.height/100),
+                                      width: MediaQuery.of(context).size.width,
+                                      height: MediaQuery.of(context).size.height/15,
+                                      color: debugShow==true ? Colors.red:null,
+                                      child: InkWell(
+                                        onTap: (){
+                                          print('test');
+                                        },
+                                        child: Card(
+                                            elevation: 10,
+                                            color: Colors.white24,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(20.0),
+                                            ),
+                                            child: Center(child:Text('Mail kkkkkkk',style: styleText.style1(context),),)
+                                        ),
+                                      )
+                                  ),
+                                )
+                            ),
+                          ],
+                        ),
+                      ),
                     ]
                 )
             )
         )
     );
   }
-              /*
-              Center(
-                    Opacity(
-                        opacity: 0.5,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width/2,
-                        height: MediaQuery.of(context).size.height/1.5,
-                        //color: Colors.white54,
-                        child: Card(
-                          elevation: 10,
-                          color: Colors.white24,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                      )
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        )
-      ),
-    );
-  }
 
-               */
 
   Widget frHomePagedrawer(){
     StyleText styleText = StyleText();

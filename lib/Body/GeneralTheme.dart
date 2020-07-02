@@ -26,11 +26,12 @@ class GeneralTheme{
   );
 
 
-  MaterialApp buildMaterialApp(StatefulWidget statefulWidget){
+  MaterialApp buildMaterialApp(StatefulWidget statefulWidget,bool debugShow){
+
     return MaterialApp(
       title: _titleApp,
       theme: _styleTheme,
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: debugShow,
       home: statefulWidget,
     );
   }
