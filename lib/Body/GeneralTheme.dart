@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:STG/Style/Style/StyleText.dart';
+import 'package:flutter/foundation.dart';
 
-class GeneralTheme{
+
+class GeneralTheme {
 
   String _titleApp = 'My App Stage';
 
@@ -26,7 +28,9 @@ class GeneralTheme{
   );
 
 
-  MaterialApp buildMaterialApp(StatefulWidget statefulWidget,bool debugShow){
+  MaterialApp buildMaterialApp(
+      StatefulWidget statefulWidget,
+      bool debugShow){
 
     return MaterialApp(
       title: _titleApp,
@@ -37,7 +41,17 @@ class GeneralTheme{
   }
 
 
-  Widget builderCommon(Widget bodyCreator,Widget drawerCreator,bool appBarexist,Alignment alignmentbegin,Alignment alignmentend,Color colorStart,Color colorEnd) {
+
+  Widget builderCommon(
+      Widget bodyCreator,
+      Widget drawerCreator,
+      bool appBarexist,
+      Alignment alignmentbegin,
+      Alignment alignmentend,
+      Color colorStart,
+      Color colorEnd) {
+
+
 
     return Scaffold(
       appBar: appBarexist==true ? _styleAppBar:null,
@@ -61,6 +75,7 @@ class GeneralTheme{
         ),
       ),
     );
+
   }
 
 }

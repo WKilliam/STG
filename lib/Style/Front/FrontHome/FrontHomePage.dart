@@ -1,16 +1,33 @@
-import 'package:STG/Style/Style/StyleIcons.dart';
+
+import 'package:STG/Style/Front/FrontHome/FrontInscriptionPage.dart';
 import 'package:STG/Style/Style/StyleText.dart';
 import 'package:flutter/material.dart';
-import 'package:neon/neon.dart';
+import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
+import 'package:STG/main.dart';
 
 
-class FrontHomePage {
+
+class FrontHomePage with ChangeNotifier{
+
+  int connect = 2;
+  int inscription = 3;
 
 
-  Widget frHomePage(BuildContext context,bool debugShow,Text txtName,Text txtFirstName,Text txtEmail,Text password,Text confPassword,Text adress) {
-    
+  Widget frHomePage (
+      BuildContext context,
+      bool debugShow,
+      Text message,
+      Text txtMail,
+      Text txtMDP,
+      Text connect,
+      Text inscription,
+      int whatContext
+      ) {
+
+    final Frt = Provider.of<FrontHomePage>(context,listen: false);
     StyleText styleText = StyleText();
-    StyleIcons styleIcons = StyleIcons();
+
     return SingleChildScrollView(
         child: Center(
             child: Container(
@@ -56,7 +73,7 @@ class FrontHomePage {
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text('Connectez-vous',style: styleText.style(context),),)
+                                      child: Center(child:Text(message.data,style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -72,7 +89,7 @@ class FrontHomePage {
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text('Mail',style: styleText.style(context),),)
+                                      child: Center(child:Text(txtMail.data,style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -108,7 +125,7 @@ class FrontHomePage {
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text('Mot de passe',style: styleText.style(context),),)
+                                      child: Center(child:Text(txtMDP.data,style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -147,7 +164,7 @@ class FrontHomePage {
                                       child: RaisedButton(
                                             color: Colors.white24,
                                             shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                                            child: Center(child:Text('Connection',style: styleText.style(context),),),
+                                            child: Center(child:Text(connect.data,style: styleText.style(context),),),
                                             onPressed: (){
                                               print('test press');
                                             },
@@ -167,13 +184,18 @@ class FrontHomePage {
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/15,
                                       color: debugShow==true ? Colors.red:null,
-                                      child: RaisedButton(
-                                        color: Colors.white24,
-                                        shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                                        child: Center(child:Text('Inscription',style: styleText.style(context),),),
-                                        onPressed: (){
-                                          print('test press');
-                                        },
+                                      child:
+                                      Consumer<MyHomePageState>(
+                                        builder: (context ,MyHomePageState,child){
+                                          return RaisedButton(
+                                            color: Colors.white24,
+                                            shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                                            child: Center(child:Text(inscription.data,style: styleText.style(context),),),
+                                            onPressed: (){
+                                              MyHomePageState.whatContext=2;
+                                            },
+                                          );
+                                        }
                                       )
                                   ),
                                 )
@@ -225,4 +247,12 @@ class FrontHomePage {
       ),
     );
   }
+
+  @override
+  Element createElement() {
+    // TODO: implement createElement
+    throw UnimplementedError();
+  }
+
+
 }

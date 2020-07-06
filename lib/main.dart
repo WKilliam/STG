@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:STG/ConnectorFirebase/ClasseObject/User.dart';
 import 'package:STG/Style/Front/FrontHome/FrontHomePage.dart';
 import 'package:STG/TestRoot.dart';
 import 'package:STG/ConnectorFirebase/ObjectService/UserService.dart';
 import 'package:flutter/material.dart';
 import 'package:STG/Body/GeneralTheme.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/foundation.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,54 +32,86 @@ class MyHomePage extends StatefulWidget {
   GeneralTheme primeryBody;
   bool debugShow;
   MyHomePage(this.primeryBody,this.debugShow);
+
   @override
   //FR : transfére de primeryBody au autre couche d'affichage
   //EN : transfer from primeryBody to the other display layer
-  _MyHomePageState createState() => _MyHomePageState(this.primeryBody,this.debugShow);
+  MyHomePageState createState() => MyHomePageState(this.primeryBody,this.debugShow);
+
 
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> with ChangeNotifier {
+
 
   UserService _service = UserService();
-  User _user = User();
+
+
   FrontHomePage _frontHomePage = FrontHomePage();
-  Text txtName = Text("Nom");
-  Text txtFirstName = Text("Prenom");
-  Text txtEmail = Text("Email");
-  Text password = Text("Mot de Passe");
-  Text conf_Password = Text("Confirmation du Mot de Passe");
-  Text adress = Text("Adresse");
+  int whatContext=1;
+  Text messagetext = Text("Bienvenue connectez-vous !");
+  Text emailText = Text("Inscrivez votre adresse mail");
+  Text mdpText = Text("Votre mot de passe");
+  Text connectionText = Text("Connection");
+  Text inscriptionText = Text("Inscription");
   // FR : la variable primaryBody permet d'utilisé les widget sous forme de classe elle sera commune au autre page
   // EN : the primaryBody variable allows to use the widget as a class it will be common to the other page
   GeneralTheme primeryBody;
   bool debugShow;
-  _MyHomePageState(this.primeryBody,this.debugShow);
+  MyHomePageState(this.primeryBody,this.debugShow);
+
+
   @override
   //FR : transfére de primeryBody au autre couche d'affichage , builderCommon affiche la base d'une page
   //EN : transfer from primeryBody to the other display layer, builderCommon display a base of page
   Widget build(BuildContext context) {
-    _user.id='test';
-    _user.passWord='test2';
-    _service.addUser(_user.toMap());
+
+    //User user = User('test','toto','mytest','tata',12,'gogo','lolol',23);
+    //_service.addUser(user.toMap());
     print('debug Show is :  ${debugShow}');
-    return primeryBody.builderCommon(
-        _frontHomePage.frHomePage(
-            context,
-            debugShow,
-            txtName,
-            txtFirstName,
-            txtEmail,
-            password,
-            conf_Password,
-            adress),
-        _frontHomePage.frHomePagedrawer(),
-        false,
-        Alignment.bottomRight,
-        Alignment.topLeft,
-        Colors.blue,
-        Colors.redAccent);
-        //Colors.black,
-        //Colors.black87);
+    print('whatContext is :  ${whatContext}');
+
+    //context.watch<String>();
+
+
+
+    switch(whatContext){
+
+      case 1:
+
+        return ChangeNotifierProvider<MyHomePageState>(
+          create: (context)=>MyHomePageState(this.primeryBody,this.debugShow),
+          child: primeryBody.builderCommon(
+            _frontHomePage.frHomePage(
+                context,          debugShow,
+                messagetext,      emailText,
+                mdpText,          connectionText,
+                inscriptionText,  whatContext),
+            _frontHomePage.frHomePagedrawer(),
+            false,
+            Alignment.bottomRight, Alignment.topLeft,
+            Colors.blue,           Colors.redAccent,),
+        );
+
+        break;
+      case 2:
+        return ChangeNotifierProvider<MyHomePageState>(
+          create: (context)=>MyHomePageState(this.primeryBody,this.debugShow),
+          child: primeryBody.builderCommon(
+            _frontHomePage.frHomePage(
+                context,          debugShow,
+                messagetext,      emailText,
+                mdpText,          connectionText,
+                inscriptionText,  whatContext),
+            _frontHomePage.frHomePagedrawer(),
+            false,
+            Alignment.bottomRight, Alignment.topLeft,
+            Colors.yellow,           Colors.redAccent,),
+        );
+        break;
+    }
+
+
   }
+
 }
