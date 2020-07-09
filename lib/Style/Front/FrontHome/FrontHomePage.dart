@@ -1,16 +1,17 @@
-import 'package:STG/Style/Style/StyleIcons.dart';
+import 'package:STG/Bloc/BlocHome/OptionBloc.dart';
+import 'package:STG/Body/AllTextOutput.dart';
 import 'package:STG/Style/Style/StyleText.dart';
 import 'package:flutter/material.dart';
-import 'package:neon/neon.dart';
 
 
-class FrontHomePage {
+class FrontHomePage{
 
+  static final TextNeed _text = TextNeed();
 
-  Widget frHomePage(BuildContext context,bool debugShow,Text txtName,Text txtFirstName,Text txtEmail,Text password,Text confPassword,Text adress) {
-    
+  Widget frHomePage(State state,BuildContext context,OptionBloc optionBloc,bool debugShow) {
+
     StyleText styleText = StyleText();
-    StyleIcons styleIcons = StyleIcons();
+
     return SingleChildScrollView(
         child: Center(
             child: Container(
@@ -31,13 +32,13 @@ class FrontHomePage {
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
                                 color: debugShow==true ? Colors.red:null,
-                              child: Card(
-                                elevation: 10,
-                                color: Colors.white24,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                              )
+                                child: Card(
+                                  elevation: 10,
+                                  color: Colors.white24,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                )
                             ),
                           )
                       ),
@@ -56,7 +57,7 @@ class FrontHomePage {
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text('Connectez-vous',style: styleText.style(context),),)
+                                      child: Center(child:Text(_text.CONNECTYOU,style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -72,7 +73,7 @@ class FrontHomePage {
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text('Mail',style: styleText.style(context),),)
+                                      child: Center(child:Text(_text.WHRITEEMAIL,style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -108,7 +109,7 @@ class FrontHomePage {
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text('Mot de passe',style: styleText.style(context),),)
+                                      child: Center(child:Text(_text.WHRITEPASSWORD,style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -145,13 +146,14 @@ class FrontHomePage {
                                       height: MediaQuery.of(context).size.height/15,
                                       color: debugShow==true ? Colors.red:null,
                                       child: RaisedButton(
-                                            color: Colors.white24,
-                                            shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                                            child: Center(child:Text('Connection',style: styleText.style(context),),),
-                                            onPressed: (){
-                                              print('test press');
-                                            },
-                                          )
+                                        color: Colors.white24,
+                                        shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                                        child: Center(child:Text(_text.CONNECT,style: styleText.style(context),),),
+                                        onPressed: (){
+                                          optionBloc.changer(enumC.connection);
+                                          state.setState(() {});
+                                        },
+                                      )
                                   ),
                                 )
                             ),
@@ -170,14 +172,16 @@ class FrontHomePage {
                                       child: RaisedButton(
                                         color: Colors.white24,
                                         shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                                        child: Center(child:Text('Inscription',style: styleText.style(context),),),
+                                        child: Center(child:Text(_text.INSCRIPTION,style: styleText.style(context),),),
                                         onPressed: (){
-                                          print('test press');
+                                          optionBloc.changer(enumC.inscription);
+                                          state.setState(() {});
                                         },
                                       )
                                   ),
                                 )
-                            ),
+                            )
+
                           ],
                         ),
                       ),
@@ -186,10 +190,8 @@ class FrontHomePage {
             )
         )
     );
+
   }
-
-
-
 
   Widget frHomePagedrawer(){
     StyleText styleText = StyleText();
@@ -225,4 +227,6 @@ class FrontHomePage {
       ),
     );
   }
+
+
 }

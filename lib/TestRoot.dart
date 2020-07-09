@@ -1,101 +1,325 @@
-import 'package:flutter/cupertino.dart';
+import 'package:STG/Bloc/BlocHome/OptionBloc.dart';
+import 'package:STG/ConnectorFirebase/ClasseObject/User.dart';
+import 'package:STG/Style/Front/FrontHome/FrontHomePage.dart';
+import 'package:STG/TestRoot.dart';
+import 'package:STG/ConnectorFirebase/ObjectService/UserService.dart';
 import 'package:flutter/material.dart';
+import 'package:STG/Body/GeneralTheme.dart';
+import 'package:provider/provider.dart';
 
-class MyAppT extends StatefulWidget {
+void main() => runApp(Application());
+
+
+
+class Application extends StatelessWidget {
+  GeneralTheme primeryBody = GeneralTheme();
+  bool debugShow = false;
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    //FR : transfére de primeryBody au autre couche d'affichage, buildMaterialApp permet d'affiché un MaterialApp prédéfini prennent en compte une primaryBody pour les autres couches
+    //EN : transfer from primeryBody to the other display layer, buildMaterialApp allows to display a predefined MaterialApp take into account a primaryBody for the other layers
+    //return primeryBody.buildMaterialApp(MyHomePage(this.primeryBody,this.debugShow), debugShow);
+
+  }
 }
 
-class _MyAppState extends State<MyAppT> with SingleTickerProviderStateMixin {
-  double _scale;
-  AnimationController _controller;
+class MyHomePage extends StatefulWidget{
+  GeneralTheme primeryBody;
+  bool debugShow;
+  MyHomePage(this.primeryBody,this.debugShow);
   @override
-  void initState() {
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(
-        milliseconds: 200,
-      ),
-      lowerBound: 0.0,
-      upperBound: 0.1,
-    )..addListener(() {
-      setState(() {});
-    });
-    super.initState();
-  }
+  _Home createState() => _Home(this.primeryBody,this.debugShow);
 
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-  }
+
+}
+
+class _Home extends State<MyHomePage>{
+  GeneralTheme primeryBody;
+  bool debugShow;
+  FrontHomePage _frontHomePage = FrontHomePage();
+  OptionBloc optionBloc = OptionBloc();
+  Text txtName = Text("Nom");
+  Text txtFirstName = Text("Prenom");
+  Text txtEmail = Text("Email");
+  Text password = Text("Mot de Passe");
+  _Home(this.primeryBody,this.debugShow);
 
   @override
   Widget build(BuildContext context) {
-    _scale = 1 - _controller.value;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Tap on the Below Button',style: TextStyle(color: Colors.grey[400],fontSize: 20.0),),
-            SizedBox(
-              height: 20.0,
-            ),
-            Center(
-              child: GestureDetector(
-                onTapDown: _onTapDown,
-                onTapUp: _onTapUp,
-                child: Transform.scale(
-                  scale: _scale,
-                  child: _animatedButtonUI,
-                ),
-              ),
-            ),
-          ],
+    @override
+    Widget build(BuildContext context) {
+      print('debug Show is :  $debugShow');
+      print('debug Show is :  ${optionBloc.what}');
 
-        ),
-      ),
+    }
+  }
+
+}
+
+/*
+
+
+class HomePage extends StatelessWidget {
+  GeneralTheme primeryBody = GeneralTheme();
+  bool debugShow = false;
+  FrontHomePage _frontHomePage = FrontHomePage();
+  OptionBloc optionBloc = OptionBloc();
+  Text txtName = Text("Nom");
+  Text txtFirstName = Text("Prenom");
+  Text txtEmail = Text("Email");
+  Text password = Text("Mot de Passe");
+
+  HomePage(this.primeryBody, this.debugShow);
+
+  @override
+  Widget build(BuildContext context) {
+    print('debug Show is :  $debugShow');
+    print('debug Show is :  ${optionBloc.what}');
+
+    if(optionBloc.what==enumC.accuil){
+      return primeryBody.builderCommon(
+          _frontHomePage.frHomePage(
+              context,
+              optionBloc,
+              debugShow,
+              txtName,
+              txtFirstName,
+              txtEmail,
+              password),
+          _frontHomePage.frHomePagedrawer()
+          , false,
+          Alignment.bottomRight,
+          Alignment.topLeft,
+          Colors.blue,
+          Colors.redAccent);
+    }else{
+      return primeryBody.builderCommon(
+          _frontHomePage.frHomePage(
+              context,
+              optionBloc,
+              debugShow,
+              txtName,
+              txtFirstName,
+              txtEmail,
+              password),
+          _frontHomePage.frHomePagedrawer()
+          , false,
+          Alignment.bottomRight,
+          Alignment.topLeft,
+          Colors.yellow,
+          Colors.green);
+    }
+  }
+
+}
+
+
+    return primeryBody.builderCommon(
+        _frontHomePage.frHomePage(
+            context,
+            optionBloc,
+            debugShow,
+            txtName,
+            txtFirstName,
+            txtEmail,
+            password),
+        _frontHomePage.frHomePagedrawer()
+        , false,
+        Alignment.bottomRight,
+        Alignment.topLeft,
+        Colors.blue,
+        Colors.redAccent);
+
+
+  }
+}
+
+
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // FR : la variable primaryBody permet d'utilisé les widget sous forme de classe elle sera commune au autre page
+  // EN : the primaryBody variable allows to use the widget as a class it will be common to the other page
+  GeneralTheme primeryBody = GeneralTheme();
+  bool debugShow = false;
+  @override
+  Widget build(BuildContext context) {
+    //FR : transfére de primeryBody au autre couche d'affichage, buildMaterialApp permet d'affiché un MaterialApp prédéfini prennent en compte une primaryBody pour les autres couches
+    //EN : transfer from primeryBody to the other display layer, buildMaterialApp allows to display a predefined MaterialApp take into account a primaryBody for the other layers
+    return primeryBody.buildMaterialApp(MyHomePage(this.primeryBody,this.debugShow),this.debugShow);
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  // FR : la variable primaryBody permet d'utilisé les widget sous forme de classe elle sera commune au autre page
+  // EN : the primaryBody variable allows to use the widget as a class it will be common to the other page
+  GeneralTheme primeryBody;
+  bool debugShow;
+  MyHomePage(this.primeryBody,this.debugShow);
+  @override
+  //FR : transfére de primeryBody au autre couche d'affichage
+  //EN : transfer from primeryBody to the other display layer
+  _MyHomePageState createState() => _MyHomePageState(this.primeryBody,this.debugShow);
+
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+  UserService _service = UserService();
+  //User _user = User();
+  FrontHomePage _frontHomePage = FrontHomePage();
+  Text txtName = Text("Nom");
+  Text txtFirstName = Text("Prenom");
+  Text txtEmail = Text("Email");
+  Text password = Text("Mot de Passe");
+  Text conf_Password = Text("Confirmation du Mot de Passe");
+  eNum _a=eNum.connection;
+  // FR : la variable primaryBody permet d'utilisé les widget sous forme de classe elle sera commune au autre page
+  // EN : the primaryBody variable allows to use the widget as a class it will be common to the other page
+  GeneralTheme primeryBody;
+  bool debugShow;
+  _MyHomePageState(this.primeryBody,this.debugShow);
+
+  @override
+  //FR : transfére de primeryBody au autre couche d'affichage , builderCommon affiche la base d'une page
+  //EN : transfer from primeryBody to the other display layer, builderCommon display a base of page
+  Widget build(BuildContext context) {
+    //_user.id='test';
+    //_user.passWord='test2';
+    //_service.addUser(_user.toMap());
+    print('debug Show is :  $debugShow');
+    print('_a is :  $_a');
+    return ChangeNotifierProvider<FrontHomePage>(
+        create: (_)=>FrontHomePage(),
+        child: Consumer(
+            builder: (context,AppState,FrontHomePage)=>Container(
+              width: 100,
+              height: 100,
+              color: Colors.red,
+            )
+        )
     );
   }
 
-  Widget get _animatedButtonUI => Container(
-    height: 70,
-    width: 200,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100.0),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x80000000),
-            blurRadius: 30.0,
-            offset: Offset(0.0, 5.0),
-          ),
-        ],
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF0000F),
-            Color(0xFFFF3500),
-          ],
-        )),
-    child: Center(
-      child: Text(
-        'tap',
-        style: TextStyle(
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.white),
-      ),
-    ),
-  );
-
-  void _onTapDown(TapDownDetails details) {
-    _controller.forward();
-  }
-
-  void _onTapUp(TapUpDetails details) {
-    _controller.reverse();
-  }
 }
+
+
+
+
+enum eNum {
+  home,
+  inscription,
+  connection,
+}
+
+
+ChangeNotifierProvider<AppState>(
+      create: (_)=>AppState(),
+      child: Consumer(
+        builder: (context,AppState,_MyHomePageState)=>Container(
+          width: 100,
+          height: 100,
+          color: Colors.red,
+        )
+      )
+    );
+
+switch (_a){
+        case eNum.home:
+          return primeryBody.builderCommon(
+              _frontHomePage.frHomePage(
+                  context,
+                  debugShow,
+                  txtName,
+                  txtFirstName,
+                  txtEmail,
+                  password,
+                  conf_Password,
+                  setEnumChoice(null)),
+              _frontHomePage.frHomePagedrawer(),
+              false,
+              Alignment.bottomRight,
+              Alignment.topLeft,
+              Colors.blue,
+              Colors.redAccent);
+          break;
+        case eNum.inscription:
+          return primeryBody.builderCommon(
+              _frontHomePage.frHomePage(
+                  context,
+                  debugShow,
+                  txtName,
+                  txtFirstName,
+                  txtEmail,
+                  password,
+                  conf_Password,
+                  setEnumChoice(null)),
+              _frontHomePage.frHomePagedrawer(),
+              false,
+              Alignment.bottomRight,
+              Alignment.topLeft,
+              Colors.black,
+              Colors.yellow);
+          break;
+        case eNum.connection:
+          return primeryBody.builderCommon(
+              _frontHomePage.frHomePage(
+                  context,
+                  debugShow,
+                  txtName,
+                  txtFirstName,
+                  txtEmail,
+                  password,
+                  conf_Password,
+                  setEnumChoice(null)),
+              _frontHomePage.frHomePagedrawer(),
+              false,
+              Alignment.bottomRight,
+              Alignment.topLeft,
+              Colors.black,
+              Colors.blue);
+          break;
+    }
+  }
+
+  setEnumChoice(eNum value){
+
+      _a=value;
+  }
+
+
+return primeryBody.builderCommon(
+        _frontHomePage.frHomePage(
+            context,
+            debugShow,
+            txtName,
+            txtFirstName,
+            txtEmail,
+            password,
+            conf_Password),
+        _frontHomePage.frHomePagedrawer(),
+        false,
+        Alignment.bottomRight,
+        Alignment.topLeft,
+        Colors.blue,
+        Colors.redAccent);
+return primeryBody.builderCommon(
+        _frontInscriptionPage.frInscriptionPage(
+            context,
+            txtName,
+            txtFirstName,
+            txtEmail,
+            password,
+            password,
+            adress),
+        _frontInscriptionPage.frInscriptionPagedrawer(),
+        false,
+        Alignment.bottomRight,
+        Alignment.topLeft,
+        Colors.blue,
+        Colors.redAccent);
+ */
+

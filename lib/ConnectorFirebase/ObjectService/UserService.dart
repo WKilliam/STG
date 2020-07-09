@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:STG/ConnectorFirebase/ClasseObject/User.dart';
 
 class UserService {
+
   // Instances
   final FirebaseAuth authInstance = FirebaseAuth.instance;
   static final Firestore dbInstance = Firestore.instance;
@@ -11,7 +12,7 @@ class UserService {
 
 
   // Collections
-  final CollectionReference dbUsers = dbInstance.collection('users');
+  final CollectionReference dbUsers = dbInstance.collection('USERS');
 
   Future<List<User>> getAllUsers() async {
     QuerySnapshot querySnapshot = await dbUsers.getDocuments();
@@ -23,9 +24,9 @@ class UserService {
     return users;
   }
 
-  Future<User> getUser(String name) async {
+  Future<User> getUser(String name,String thisIs) async {
     QuerySnapshot querySnapshot =
-    await dbUsers.where('id', isEqualTo: name).getDocuments();
+    await dbUsers.where(thisIs, isEqualTo: name).getDocuments();
     DocumentSnapshot documentSnapshot = querySnapshot.documents.first;
     return User.fromFirestore(documentSnapshot);
   }
@@ -38,4 +39,5 @@ class UserService {
     await dbUsers.where('name', isEqualTo: name).getDocuments();
     await dbUsers.document(querySnapshot.documents.first.documentID).delete();
   }
+
 }
