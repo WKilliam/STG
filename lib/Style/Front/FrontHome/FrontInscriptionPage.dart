@@ -1,18 +1,16 @@
+import 'package:STG/Bloc/BlocHome/OptionBloc.dart';
+import 'package:STG/Body/AllTextOutput.dart';
 import 'package:STG/Style/Style/StyleIcons.dart';
 import 'package:STG/Style/Style/StyleText.dart';
 import 'package:flutter/material.dart';
 
 class FrontInscriptionPage{
 
+  static final TextNeed _text = TextNeed();
 
-  Widget frInscriptionPage(
-      BuildContext context,
-      Text txtName,
-      Text txtFirstName,
-      Text txtEmail,
-      Text password,
-      Text confPassword,
-      Text adress){
+  Widget frInscriptionPage(State state,BuildContext context,OptionBloc optionBloc,bool debugShow){
+
+
     StyleText styleText = StyleText();
     StyleIcons styleIcons = StyleIcons();
 
@@ -36,7 +34,7 @@ class FrontInscriptionPage{
                         style: styleText.style1(context),
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
-                            hintText: txtName.data,
+                            hintText: _text.WHRITENAME,
                             hintStyle: styleText.style(context),
                             icon: styleIcons.iconAccount(context)
                         ),
@@ -54,7 +52,7 @@ class FrontInscriptionPage{
                         style: styleText.style1(context),
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
-                            hintText: txtFirstName.data,
+                            hintText: _text.WHRITEFRISTNAME,
                             hintStyle: styleText.style(context),
                             icon: styleIcons.iconAccount(context)
                         ),
@@ -72,7 +70,7 @@ class FrontInscriptionPage{
                         style: styleText.style1(context),
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
-                            hintText: txtEmail.data,
+                            hintText: _text.WHRITEEMAIL,
                             hintStyle: styleText.style(context),
                             icon: styleIcons.iconMail(context)
                         ),
@@ -90,7 +88,7 @@ class FrontInscriptionPage{
                         style: styleText.style1(context),
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
-                            hintText: password.data,
+                            hintText: _text.WHRITEPASSWORD,
                             hintStyle: styleText.style(context),
                             icon: styleIcons.iconLock(context)
                         ),
@@ -108,7 +106,7 @@ class FrontInscriptionPage{
                         style: styleText.style1(context),
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
-                            hintText: confPassword.data,
+                            hintText: _text.WHRITECONFIRMPASSWORD,
                             hintStyle: styleText.style(context),
                             icon: styleIcons.iconLock(context)
                         ),
@@ -126,7 +124,7 @@ class FrontInscriptionPage{
                         style: styleText.style1(context),
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
-                            hintText: adress.data,
+                            hintText: _text.WHRITEADRESS,
                             hintStyle: styleText.style(context),
                             icon: styleIcons.iconLocation(context)
                         ),

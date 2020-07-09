@@ -18,7 +18,7 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     //FR : transfére de primeryBody au autre couche d'affichage, buildMaterialApp permet d'affiché un MaterialApp prédéfini prennent en compte une primaryBody pour les autres couches
     //EN : transfer from primeryBody to the other display layer, buildMaterialApp allows to display a predefined MaterialApp take into account a primaryBody for the other layers
-    return primeryBody.buildMaterialApp(MyHomePage(this.primeryBody,this.debugShow), debugShow);
+    //return primeryBody.buildMaterialApp(MyHomePage(this.primeryBody,this.debugShow), debugShow);
 
   }
 }
@@ -50,22 +50,7 @@ class _Home extends State<MyHomePage>{
     Widget build(BuildContext context) {
       print('debug Show is :  $debugShow');
       print('debug Show is :  ${optionBloc.what}');
-      return primeryBody.builderCommon(
-          _frontHomePage.frHomePage(this,
-              context,
-              optionBloc,
-              debugShow,
-              txtName,
-              txtFirstName,
-              txtEmail,
-              password),
-          _frontHomePage.frHomePagedrawer()
-          ,
-          false,
-          Alignment.bottomRight,
-          Alignment.topLeft,
-          Colors.blue,
-          Colors.redAccent);
+
     }
   }
 

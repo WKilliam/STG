@@ -1,13 +1,30 @@
-import 'package:STG/Bloc/BlocHome/OptionBloc.dart';
 import 'package:flutter/material.dart';
 import 'package:STG/Style/Style/StyleText.dart';
-import 'package:flutter/foundation.dart';
-import 'package:provider/provider.dart';
 
 
 
 
 class GeneralTheme {
+
+  static final MaterialColor _COLORSBLUE = Colors.blue;
+  MaterialColor get COLORSBLUE => _COLORSBLUE;
+
+  static final Color _COLORSRED = Colors.redAccent;
+  Color get COLORSRED => _COLORSRED;
+
+  static final bool _DEBUGSHOW =false;
+  bool get DEBUGSHOW => _DEBUGSHOW;
+
+  static bool _DRAWERSHOW =false;
+  bool get DRAWERSHOW => _DRAWERSHOW;
+
+  static final Alignment _ALIGNEMENTSTART = Alignment.bottomRight;
+  Alignment get ALIGNEMENTSTART => _ALIGNEMENTSTART;
+
+  static final Alignment _ALIGNEMENTEND = Alignment.topLeft;
+  Alignment get ALIGNEMENTEND => _ALIGNEMENTEND;
+
+
 
   String _titleApp = 'My App Stage';
 
@@ -33,39 +50,21 @@ class GeneralTheme {
 
 
   MaterialApp buildMaterialApp(
-      StatefulWidget statefulWidget,
-      bool debugShow){
+      StatefulWidget statefulWidget){
 
     return MaterialApp(
       title: _titleApp,
       theme: _styleTheme,
-      debugShowCheckedModeBanner: debugShow,
+      debugShowCheckedModeBanner: DEBUGSHOW,
       home:  statefulWidget
     );
   }
-  MaterialApp buildMaterialApp2(
-      StatelessWidget statefulWidget,
-      bool debugShow){
-
-    return MaterialApp(
-        title: _titleApp,
-        theme: _styleTheme,
-        debugShowCheckedModeBanner: debugShow,
-        home:  statefulWidget
-    );
-  }
 
 
-  Widget builderCommon(
+  Widget builderCREATOR(
       Widget bodyCreator,
       Widget drawerCreator,
-      bool appBarexist,
-      Alignment alignmentbegin,
-      Alignment alignmentend,
-      Color colorStart,
-      Color colorEnd) {
-
-
+      bool appBarexist) {
 
     return Scaffold(
       appBar: appBarexist==true ? _styleAppBar:null,
@@ -77,9 +76,9 @@ class GeneralTheme {
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    begin: alignmentbegin,
-                    end: alignmentend,
-                    colors: [colorStart,colorEnd]
+                    begin: ALIGNEMENTSTART,
+                    end: ALIGNEMENTEND,
+                    colors: [COLORSBLUE,COLORSRED]
                   )
                 ),
               )
@@ -91,5 +90,6 @@ class GeneralTheme {
     );
 
   }
+
 
 }
