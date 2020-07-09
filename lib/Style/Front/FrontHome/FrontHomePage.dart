@@ -1,31 +1,24 @@
-
-import 'package:STG/Style/Front/FrontHome/FrontInscriptionPage.dart';
+import 'package:STG/Bloc/BlocHome/OptionBloc.dart';
+import 'package:STG/Style/Style/StyleIcons.dart';
 import 'package:STG/Style/Style/StyleText.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:provider/provider.dart';
 import 'package:STG/main.dart';
+import 'package:flutter/material.dart';
 
 
-
-class FrontHomePage with ChangeNotifier{
-
-  int connect = 2;
-  int inscription = 3;
+class FrontHomePage{
 
 
-  Widget frHomePage (
+  Widget frHomePage(
+      State state,
       BuildContext context,
+      OptionBloc optionBloc,
       bool debugShow,
-      Text message,
-      Text txtMail,
-      Text txtMDP,
-      Text connect,
-      Text inscription,
-      int whatContext
-      ) {
+      Text txtName,
+      Text txtFirstName,
+      Text txtEmail,
+      Text password) {
 
-    final Frt = Provider.of<FrontHomePage>(context,listen: false);
+
     StyleText styleText = StyleText();
 
     return SingleChildScrollView(
@@ -48,13 +41,13 @@ class FrontHomePage with ChangeNotifier{
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
                                 color: debugShow==true ? Colors.red:null,
-                              child: Card(
-                                elevation: 10,
-                                color: Colors.white24,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                              )
+                                child: Card(
+                                  elevation: 10,
+                                  color: Colors.white24,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                )
                             ),
                           )
                       ),
@@ -73,7 +66,7 @@ class FrontHomePage with ChangeNotifier{
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text(message.data,style: styleText.style(context),),)
+                                      child: Center(child:Text('Connectez-vous',style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -89,7 +82,7 @@ class FrontHomePage with ChangeNotifier{
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text(txtMail.data,style: styleText.style(context),),)
+                                      child: Center(child:Text('Mail',style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -125,7 +118,7 @@ class FrontHomePage with ChangeNotifier{
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/20,
                                       color: debugShow==true ? Colors.purple:null,
-                                      child: Center(child:Text(txtMDP.data,style: styleText.style(context),),)
+                                      child: Center(child:Text('Mot de passe',style: styleText.style(context),),)
                                   ),
                                 )
                             ),
@@ -162,13 +155,14 @@ class FrontHomePage with ChangeNotifier{
                                       height: MediaQuery.of(context).size.height/15,
                                       color: debugShow==true ? Colors.red:null,
                                       child: RaisedButton(
-                                            color: Colors.white24,
-                                            shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                                            child: Center(child:Text(connect.data,style: styleText.style(context),),),
-                                            onPressed: (){
-                                              print('test press');
-                                            },
-                                          )
+                                        color: Colors.white24,
+                                        shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                                        child: Center(child:Text('Connection',style: styleText.style(context),),),
+                                        onPressed: (){
+                                          optionBloc.changer(enumC.connection);
+                                          state.setState(() {});
+                                        },
+                                      )
                                   ),
                                 )
                             ),
@@ -184,22 +178,19 @@ class FrontHomePage with ChangeNotifier{
                                       width: MediaQuery.of(context).size.width,
                                       height: MediaQuery.of(context).size.height/15,
                                       color: debugShow==true ? Colors.red:null,
-                                      child:
-                                      Consumer<MyHomePageState>(
-                                        builder: (context ,MyHomePageState,child){
-                                          return RaisedButton(
-                                            color: Colors.white24,
-                                            shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                                            child: Center(child:Text(inscription.data,style: styleText.style(context),),),
-                                            onPressed: (){
-                                              MyHomePageState.whatContext=2;
-                                            },
-                                          );
-                                        }
+                                      child: RaisedButton(
+                                        color: Colors.white24,
+                                        shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                                        child: Center(child:Text('Inscription',style: styleText.style(context),),),
+                                        onPressed: (){
+                                          optionBloc.changer(enumC.inscription);
+                                          state.setState(() {});
+                                        },
                                       )
                                   ),
                                 )
-                            ),
+                            )
+
                           ],
                         ),
                       ),
@@ -247,12 +238,4 @@ class FrontHomePage with ChangeNotifier{
       ),
     );
   }
-
-  @override
-  Element createElement() {
-    // TODO: implement createElement
-    throw UnimplementedError();
-  }
-
-
 }

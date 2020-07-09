@@ -1,6 +1,10 @@
+import 'package:STG/Bloc/BlocHome/OptionBloc.dart';
 import 'package:flutter/material.dart';
 import 'package:STG/Style/Style/StyleText.dart';
 import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
+
+
 
 
 class GeneralTheme {
@@ -36,10 +40,20 @@ class GeneralTheme {
       title: _titleApp,
       theme: _styleTheme,
       debugShowCheckedModeBanner: debugShow,
-      home: statefulWidget,
+      home:  statefulWidget
     );
   }
+  MaterialApp buildMaterialApp2(
+      StatelessWidget statefulWidget,
+      bool debugShow){
 
+    return MaterialApp(
+        title: _titleApp,
+        theme: _styleTheme,
+        debugShowCheckedModeBanner: debugShow,
+        home:  statefulWidget
+    );
+  }
 
 
   Widget builderCommon(
